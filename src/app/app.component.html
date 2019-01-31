@@ -1,0 +1,19 @@
+<form class="form" name="ConfigurationForm" [formGroup]="ConfigurationForm">
+    <mat-tab-group (selectedTabChange)="onLinkClick($event)">
+      <mat-tab label="Overview">
+          <overview-data (showOtherTabs)="getTabDisplay($event)" (overviewSummary)="getOverviewSummary($event)"></overview-data>
+      </mat-tab>
+        <mat-tab label="Hardware/Software"> 
+          <hardware-data  [showOtherTabData]='showData' (hardwareSummary)="getHardwareSummary($event)"></hardware-data>
+        </mat-tab>
+        <mat-tab label="Services"> 
+            <service-component [showOtherTabData]='showData' (serviceData)="getServiceData($event)"></service-component> 
+        </mat-tab>
+        <mat-tab label="Missing Items"> 
+           Error data
+        </mat-tab>
+        <mat-tab label="Summary"> 
+          <summary-data [overviewsummary]='overviewsummarydata' [hardwaresummary]='hardwaresummarydata' [serviceSummary]='serviceSummarydata'></summary-data>
+        </mat-tab>
+      </mat-tab-group>
+</form>

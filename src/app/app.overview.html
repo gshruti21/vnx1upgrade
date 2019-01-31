@@ -1,0 +1,135 @@
+<div>
+<p (change)="onChanges()"> 
+        <mat-form-field> 
+          <b>Solution Name : </b><input matInput required [(ngModel)]="solutionname" name="solutionname">
+        </mat-form-field>
+      </p>      
+      <p (change)="onChanges()">
+        <mat-form-field>
+              <b>Install Country : </b>
+          <mat-select required [(value)]="installCountry" [(ngModel)]="installCountry" name="installCountry">
+            <mat-option *ngFor="let country of countries" [value]="country.value">
+              {{country.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p (change)="onChanges()">
+          <b>Type of Configuration:</b>
+          <mat-radio-group required [(ngModel)]="configurationType" name="configurationType" [disabled]="disabled">
+              <mat-radio-button value="Upgrade">Upgrade</mat-radio-button>
+              <mat-radio-button value="In Family Data in Place Conversion">In Family Data in Place Conversion</mat-radio-button>
+            </mat-radio-group>
+      </p>
+      
+      <div *ngIf="configurationType==='Upgrade'">
+      <p>
+            Identify the following for your existing array:
+      </p>
+      <table mat-table>
+            <mat-list >
+                    <td>
+                    <b>Base Model:</b>
+                    <mat-action-list>
+                        <mat-radio-group required [(ngModel)]="baseModel" name="baseModel" [disabled]="disabled" (click)="onChangeConfig()">
+                            <mat-list-item>
+                                <mat-radio-button value="VNX5100">VNX5100</mat-radio-button>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-radio-button value="VNX5300">VNX5300</mat-radio-button>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-radio-button value="VNX5500">VNX5500</mat-radio-button>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-radio-button value="VNX5700">VNX5700</mat-radio-button>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-radio-button value="VNX7500(24GB/ 48GB)">VNX7500(24GB/ 48GB)</mat-radio-button>
+                            </mat-list-item>
+                        </mat-radio-group>
+                    </mat-action-list>
+                    </td>
+                    <td>
+                            <b>Platform Configuration:</b>
+                    <mat-action-list>
+                        <mat-radio-group required [(ngModel)]="platformConfig" name="platformConfig" [disabled]="disablePlatformConfig" (click)="onChangeConfig()">
+                                <mat-list-item>
+                                        <mat-radio-button value="Unified">Unified</mat-radio-button>
+                                </mat-list-item>
+                                <mat-list-item>
+                                        <mat-radio-button value="File Only">File Only</mat-radio-button>
+                                </mat-list-item> 
+                                <mat-list-item>
+                                        <mat-radio-button value="Block Only">Block Only</mat-radio-button>
+                                </mat-list-item> 
+                                <mat-list-item>
+                                        <mat-radio-button value="File Only - Upgrade to Unified">File Only - Upgrade to Unified</mat-radio-button>
+                                </mat-list-item> 
+                                <mat-list-item>
+                                        <mat-radio-button value="Block Only - Upgrade to Unified">Block Only - Upgrade to Unified</mat-radio-button>
+                                </mat-list-item>    
+                        </mat-radio-group>
+                    </mat-action-list>
+                </td>
+                    <td>
+                    <b>Rack Selection:</b>
+                    <mat-action-list>
+                        <mat-radio-group required [(ngModel)]="rack" name="rack" [disabled]="disabled" (click)="onChangeConfig()"> 
+                                <mat-list-item>
+                                        <mat-radio-button value="EMC Rack">EMC Rack</mat-radio-button>
+                                </mat-list-item>
+                                <mat-list-item>
+                                        <mat-radio-button value="Customer Supplied Rack">Customer Supplied Rack</mat-radio-button>
+                                </mat-list-item> 
+                                <mat-list-item *ngIf="baseModel==='VNX5500'">
+                                        <mat-radio-button value="EMC Dense Rack">EMC Dense Rack</mat-radio-button>
+                                </mat-list-item>  
+                        </mat-radio-group>
+                    </mat-action-list>
+                </td>
+            </mat-list>
+        </table>
+    </div>
+      <p *ngIf="platformConfig=='Block Only'">
+      Was the installed block only system ordered with model VNXDEPERESS and/or are DPE Ports 4 and 5(Listed as FC Logical Ports FE2 and FE3) unused?
+      <tr>
+      <mat-radio-group required [(ngModel)]="unusedInstalledBlock" name="unusedInstalledBlock" [disabled]="disabled">
+              <mat-radio-button value="Yes">Yes</mat-radio-button>
+              <mat-radio-button value="No">No</mat-radio-button>
+      </mat-radio-group>
+      </tr>
+      </p>
+      <tr>
+          Enter Serial Number to View Install Base Data:
+          <mat-form-field><input matInput matTooltip="Serial Number will be stored and sent to downstream systems - Please ensure you have entered a valid storage array serial number" [(ngModel)]="serialNumber" name="serialNumber"></mat-form-field></tr>
+          <tr><button mat-raised-button color="primary" (click)='handleButton()'>View IB Data</button></tr>
+          <tr>
+            Exception Reason if No Serial Number provided:  
+                  <mat-form-field>
+                      <mat-select [(ngModel)]="exceptionReason" name="exceptionReason" [(value)]="exceptionReason">
+                        <mat-option value="Approved Exception">
+                            Approved Exception
+                        </mat-option>
+                        <mat-option value="Budgetary estimate only">
+                                Budgetary estimate only
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+          </tr>
+          <p>
+                          <mat-checkbox *ngIf="baseModel=='VNX5100'||baseModel=='VNX5300'||baseModel=='VNX5500'" checkboxPosition="before" [(ngModel)]="upgradeDC" name="upgradeDC"> 
+                              Upgrade a DC powered array
+                          </mat-checkbox>
+          </p>
+          <p>
+                          <mat-checkbox checkboxPosition="before" [(ngModel)]="quoteTAADrives" name="quoteTAADrives">
+                              Check here if you need to quote TAA(U.S. Trade Agreement Act Compliance) drives with this order(Federal Govt only).
+                          </mat-checkbox>
+                        </p>
+                        <p>
+                          <mat-checkbox checkboxPosition="before" (click)="onCheck(!freezeConfig.checked)" #freezeConfig>
+                              Confirm your base model and platform configuration selections to continue your configuration.
+                          </mat-checkbox>
+          </p>
+        </div>

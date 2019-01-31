@@ -1,0 +1,111 @@
+<h2>Storage Components</h2>
+<div (click)='onChange()'>
+<tr>
+<td>
+Do you wish to configure a NEBS Configuration?
+</td>
+<td>
+    <mat-radio-group required [(ngModel)]="NEBSConfiguration" name="NEBSConfiguration">
+        <mat-radio-button value="No">No</mat-radio-button>
+        <mat-radio-button value="Yes">Yes</mat-radio-button>
+    </mat-radio-group>
+</td>
+</tr>
+<tr>
+    <td>
+        Identify your existing DPE:
+    </td>
+    <td>
+            <mat-radio-group required [(ngModel)]="existingDPE" name="existingDPE">
+                    <mat-radio-button value="3U 25 x 2.5 drive DPE">3U 25 x 2.5" drive DPE</mat-radio-button>
+                    <mat-radio-button value="3U 35 x 3.5 drive DPE">3U 15 x 3.5" drive DPE</mat-radio-button>
+            </mat-radio-group>
+    </td>
+</tr>
+<table>
+        <tr>
+                <td>
+                    Identify your existing vault drives:
+                </td>
+                <td></td>
+                <td style="width:50%;">
+                    <mat-select [(ngModel)]="existingVault" name="existingVault">
+                        <mat-option value='300GB(2.5" 6G SAS 10K)'>300GB(2.5" 6G SAS 10K)</mat-option>
+                        <mat-option value='300GB(3.5" 6G SAS 10K)'>300GB(3.5" 6G SAS 10K)</mat-option>
+                    </mat-select>
+                </td>
+                <td>
+                    File/Block
+                    <mat-radio-group [(ngModel)]="vaultFileBlock" name="vaultFileBlock">
+                        <mat-radio-button value="File"></mat-radio-button>
+                        <mat-radio-button value="Block"></mat-radio-button>
+                    </mat-radio-group>
+                </td>
+         </tr>
+</table>
+<table>
+    <tr>
+        <td><b>25 x 2.5" 15 x 3.5"</b></td>
+        <td><b>Select your DAE/DPE Drives</b></td>
+        <td><b>     </b></td>
+        <td><b>Qty Installed</b></td>
+        <td><b>Qty to add</b></td>
+    </tr>
+    <tr>
+        <mat-radio-group [(ngModel)]="DPE1" name="DPE1">
+            <td><mat-radio-button value='25 x 2.5"'></mat-radio-button></td>
+            <td><mat-radio-button value='15 x 3.5"'></mat-radio-button></td>
+        </mat-radio-group>
+        <td><mat-select [(ngModel)]="drive1" name="drive1">
+            <mat-option value='600GB 10K SAS DRV'>600GB 10K SAS DRV</mat-option>
+            <mat-option value='300GB 10K SAS DRV'>300GB 10K SAS DRV</mat-option>
+        </mat-select></td>
+        <td><mat-radio-group [(ngModel)]="FileBlock1" name="FileBlock1">
+                <mat-radio-button value="File"></mat-radio-button>
+                <mat-radio-button value="Block"></mat-radio-button>
+            </mat-radio-group></td>
+        <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="installed1" name="installed1"/></mat-form-field></td>
+        <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="added1" name="added1"/></mat-form-field></td>
+    </tr>
+    <tr>
+        <mat-radio-group [(ngModel)]="DPE2" name="DPE2">
+            <td><mat-radio-button value='25 x 2.5"'></mat-radio-button></td>
+            <td><mat-radio-button value='15 x 3.5"'></mat-radio-button></td>
+        </mat-radio-group>
+            <td><mat-select [(ngModel)]="drive2" name="drive2"><mat-option value='600GB 10K SAS DRV'>600GB 10K SAS DRV</mat-option>
+                <mat-option value='300GB 10K SAS DRV'>300GB 10K SAS DRV</mat-option></mat-select></td>
+            <td><mat-radio-group [(ngModel)]="FileBlock2" name="FileBlock2">
+                    <mat-radio-button value="File"></mat-radio-button>
+                    <mat-radio-button value="Block"></mat-radio-button>
+                </mat-radio-group></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="installed2" name="installed2" matInput maxlength="1"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="added2" name="added2" matInput maxlength="1"/></mat-form-field></td>
+    </tr>
+    <tr>
+        <mat-radio-group [(ngModel)]="DPE3" name="DPE3">
+            <td><mat-radio-button value='25 x 2.5"'></mat-radio-button></td>
+            <td><mat-radio-button value='15 x 3.5"'></mat-radio-button></td>
+        </mat-radio-group>
+            <td><mat-select [(ngModel)]="drive3" name="drive3"><mat-option value='600GB 10K SAS DRV'>600GB 10K SAS DRV</mat-option>
+                <mat-option value='300GB 10K SAS DRV'>300GB 10K SAS DRV</mat-option></mat-select></td>
+            <td><mat-radio-group [(ngModel)]="FileBlock3" name="FileBlock3">
+                    <mat-radio-button value="File"></mat-radio-button>
+                    <mat-radio-button value="Block"></mat-radio-button>
+                </mat-radio-group></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="installed3" name="installed3" matInput maxlength="1"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="added3" name="added3" matInput maxlength="1"/></mat-form-field></td>
+    </tr>
+</table>
+<p>
+<tr>
+        <td></td>
+        <td>2U 25 x 2.5"</td>
+        <td>3U 15 x 3.5"</td>
+</tr>
+<tr>
+    <td>Number of empty DPE/DAE drive slots in the existing array</td>
+    <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="emptyDPE2U" name="emptyDPE2U" matInput maxlength="1"/></mat-form-field></td>
+    <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" [(ngModel)]="emptyDPE3U" name="emptyDPE3U" matInput maxlength="1"/></mat-form-field></td>
+</tr>
+</p>
+</div>

@@ -1,0 +1,63 @@
+    <h1><b>Software:</b></h1>
+    <table>
+        <tr>
+            <td style="width:50%"><b>Existing Software</b></td>
+            <td style="width:50%"><b>Additional Software</b></td>
+        </tr>
+        <tr>
+            <td style="width:50%">
+                    <mat-selection-list #existingsoftwares (selectionChange)="onExistingSoftwareSelection($event, existingsoftwares.selectedOptions)">
+                            <mat-list-option value="FAST Suite">
+                                FAST Suite
+                            </mat-list-option>
+                            <mat-list-option value="Events and Retention Suite">
+                                Events and Retention Suite
+                            </mat-list-option>
+                            <mat-list-option value="Local Protection Suite">
+                                Local Protection Suite
+                            </mat-list-option>
+                            <mat-list-option value="Remote Protection Suite">
+                                Remote Protection Suite
+                            </mat-list-option>
+                            <mat-list-option value="Application Proctection">
+                                Application Proctection
+                            </mat-list-option>
+                        </mat-selection-list>
+            </td>
+            <td style="width:50%">
+                    <mat-selection-list #additionalsoftwares (selectionChange)="onAdditionalSoftwareSelection($event, additionalsoftwares.selectedOptions)">  
+                            <mat-list-option value="FAST Suite">
+                                    FAST Suite
+                                </mat-list-option>
+                                <mat-list-option value="Events and Retention Suite">
+                                    Events and Retention Suite
+                                </mat-list-option>
+                                <mat-list-option value="Local Protection Suite">
+                                    Local Protection Suite
+                                </mat-list-option>
+                                <mat-list-option value="Remote Protection Suite">
+                                    Remote Protection Suite
+                                </mat-list-option>
+                                <mat-list-option value="Application Proctection">
+                                    Application Proctection
+                                </mat-list-option>
+                        </mat-selection-list>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50%;color:blue;">
+                {{existingSoftwaremessage}}
+            </td>
+            <td style="width:50%;color:blue;">
+                {{additionalSoftwaremessage}}
+            </td>
+        </tr>
+        <tr><td>You have selected either the LPS,RPS,TPP or TEP. Are you planning to use RecoverPoint</td>
+            <td><mat-radio-group required [(ngModel)]="useRecoverPoint" name="useRecoverPoint" >
+                <mat-radio-button value="No">No</mat-radio-button>
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+            </mat-radio-group></td>
+        </tr>
+    </table>
+
+    

@@ -1,0 +1,36 @@
+<p>
+    <tr><td><h2>Configration details </h2></td><td *ngIf="solutionname.value.length>=0"><b> for {{solutionname.value}}</b></td></tr>
+    <tr>The model displayed below have been added to your current configuration: </tr>
+</p>
+<table>
+    <tr>
+    <th style="width:20%">Item</th>
+    <th style="width:60%">Description</th>
+    <th style="width:20%">Quantity</th>
+    </tr>
+    <tr>
+            {{configType.value}}
+    </tr>
+    <tr *ngFor="let model of hardwaresummary">
+            <td style="width:20%">
+                {{model.id}} {{model.model}}
+                </td>
+                <td style="width:60%">
+                        {{basemodel.description}}
+                </td>
+                <td style="width:20%">
+                        {{model.value}}
+                </td>
+    </tr>
+    <tr *ngFor="let model of serviceSummary">
+                <td style="width:20%">
+                    {{model.id}} {{model.model}}
+                    </td>
+                    <td style="width:60%">
+                            {{basemodel.description}}
+                    </td>
+                    <td style="width:20%">
+                            {{model.value}}
+                    </td>
+        </tr>
+</table>

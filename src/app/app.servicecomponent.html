@@ -1,0 +1,114 @@
+<div (click)='onChanges()' *ngIf="showOtherTabData">
+    <p>
+        <tr><td>Will EMC perform installation and implementation services?</td>
+            <td><mat-radio-group [(ngModel)]="orderInstallationServices" name="orderInstallationServices" [(value)]="orderInstallationServices">
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+            </mat-radio-group></td>
+        </tr>
+        <tr *ngIf='orderInstallationServices=="No"'><small style="color: red">
+        No installation or implementation services have been ordered.
+        </small></tr>
+        <tr *ngIf='orderInstallationServices=="Yes"'><small style="color: red">
+                Installation or implementation services have been ordered.
+        </small></tr>
+    </p>
+    <p>
+        <tr>
+            <td>Include data migration services?</td>
+            <td>
+                    <mat-form-field>
+                            <mat-select [(ngModel)]="orderDataMigrationServices" name="orderDataMigrationServices" [(value)]="orderDataMigrationServices">
+                              <mat-option value="Yes">
+                                    Yes
+                              </mat-option>
+                              <mat-option value="No">
+                                      No
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field></td>
+        </tr>
+        <tr *ngIf='orderDataMigrationServices=="Yes"'><small style="color: red">
+                Data Migration services have been ordered.
+        </small></tr>
+        <tr *ngIf='orderDataMigrationServices=="No"'><small style="color: red">
+                No Data Migration services have been ordered.
+        </small></tr>
+    </p>
+    <p>
+        <tr>
+                <td>Include data migration Architect and design services for Block(planning only)?</td>
+                <td><mat-form-field><mat-select required [(ngModel)]="orderDMForBlock" name="orderDMForBlock">
+                    <mat-option value="Yes">Yes</mat-option>
+                    <mat-option value="No">No</mat-option>
+                </mat-select></mat-form-field></td>
+        </tr>
+    </p>
+    <p>
+        <tr><td>Architecture and design a data migration plan for Number of Block hosts</td>
+        <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" required [(ngModel)]="noOfBlocks" name="noOfBlocks" style="float:right;" min="0" matInput maxlength="1"/></mat-form-field></td>
+        </tr>
+    </p>
+    <p>
+        <tr>
+            <td>Include data migration Event services for Block(EMC migrates the data based on the Architect and Design Services)?</td>
+            <td><mat-form-field><mat-select required [(ngModel)]="orderDMEventforBlock" name="orderDMEventforBlock" [(value)]="orderDMEventforBlock">
+                    <mat-option value="Yes">Yes</mat-option>
+                    <mat-option value="No">No</mat-option>
+                </mat-select></mat-form-field></td>
+        </tr>
+    </p>
+    <p>
+        <mat-selection-list #upgrade>
+        <tr>
+            <td width="10%"><mat-list-option checkboxPosition="before">
+                </mat-list-option></td>
+                <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput1" name="serviceInput1"/></mat-form-field>
+                </td>
+                <td>PS-BAS-UPCS</td>
+                <td>EMC Unified Control Station Upgrade</td>
+           
+        </tr>
+        <tr>
+                <td width="10%"><mat-list-option checkboxPosition="before">
+                    </mat-list-option></td>
+                    <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput2" name="serviceInput2"/></mat-form-field>
+                    </td>
+                    <td>PS-BAS-UPDAEB</td>
+                    <td>Base DAE/ Disk Upgrade</td>
+        </tr>
+        <tr>
+                <td width="10%"><mat-list-option checkboxPosition="before">
+                    </mat-list-option></td>
+                    <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput3" name="serviceInput3"/></mat-form-field>
+                    </td>
+                    <td>PS-BAS-UPDAE</td>
+                    <td>Base DAE/ Disk Upgrade adder</td>
+        </tr>
+        <tr>
+                <td width="10%"><mat-list-option checkboxPosition="before">
+                    </mat-list-option></td>
+                    <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput4" name="serviceInput4"/></mat-form-field>
+                    </td>
+                    <td>PS-BAS-UPDM</td>
+                    <td>EMC Unified Data Mover Upgrade</td>
+        </tr>
+        <tr>
+                <td width="10%"><mat-list-option checkboxPosition="before">
+                    </mat-list-option></td>   
+                    <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput5" name="serviceInput5"/></mat-form-field>
+                    </td>
+                    <td>PS-BAS-VNXVI</td>
+                    <td>Migr VNX Virtual Infra upto 15hosts</td>
+        </tr>
+        <tr>
+                <td width="10%"><mat-list-option checkboxPosition="before">
+                    </mat-list-option></td>
+                    <td><mat-form-field appearance="outline" style="width:30px;font-size:10px;"><input matInput size="1" [(ngModel)]="serviceInput6" name="serviceInput6"/></mat-form-field>
+                    </td>
+                    <td>PSUPGD-ESRS</td>
+                    <td>Zero Dollar ESRSUpgrade</td>
+        </tr>
+        </mat-selection-list>
+    </p>
+</div>

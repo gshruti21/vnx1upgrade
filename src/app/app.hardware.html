@@ -1,0 +1,243 @@
+<div (click)='onChanges()' *ngIf="showOtherTabData">
+    <h2><b>I/O components</b></h2>
+    <p>
+        <mat-checkbox [(ngModel)]="controlStationAdded" name="controlStationAdded">Add a second control station</mat-checkbox>
+    </p>
+        <table>
+        <tr>
+            <td></td>
+            <td><b>Qty Install</b></td>
+            <td><b>Qty to add</b></td>
+        </tr>
+        <tr>
+            <td>Number of data movers:</td>
+            <td><mat-form-field appearance="outline" style="width:50px;font-size: 6px;height: 6px;"><mat-select [(ngModel)]="dataMoversNoInstalled" name="dataMoversNoInstalled" (click)="onAddingDataMover()">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+            </mat-select></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;font-size: 6px;height: 6px;"><mat-select [(ngModel)]="dataMoversNoAdded" name="dataMoversNoAdded" [disabled]="disableAddDataMover">
+                    <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+            </mat-select></mat-form-field></td>
+        </tr>
+        <tr>
+                <td>Number of primary data movers:</td>
+                <td><mat-form-field appearance="outline" style="width:50px;font-size: 6px;height: 6px;">
+                    <mat-select [(ngModel)]="primaryDataMoversNoInstalled" name="primaryDataMoversNoInstalled">
+                        <mat-option value="0">0</mat-option>
+                        <mat-option *ngIf="dataMoversNoInstalled>=1" value="1">1</mat-option>
+                        <mat-option *ngIf="dataMoversNoInstalled>=2" value="2">2</mat-option>
+                        <mat-option *ngIf="dataMoversNoInstalled==3" value="3">3</mat-option>
+                </mat-select></mat-form-field></td>
+                <td><mat-form-field appearance="outline" style="width:50px;font-size: 6px;height: 6px;"><mat-select [(ngModel)]="primaryDataMoversNoAdded" name="primaryDataMoversNoAdded" [disabled]="disableAddDataMover">
+                    <mat-option value="0">0</mat-option>
+                    <mat-option *ngIf="dataMoversNoAdded>=1" value="1">1</mat-option>
+                    <mat-option *ngIf="dataMoversNoAdded>=2" value="2">2</mat-option>
+                    <mat-option *ngIf="dataMoversNoAdded==3" value="3">3</mat-option>
+                </mat-select></mat-form-field></td>
+            </tr>
+            <tr>
+                <td>Number of empty data mover enclosures: </td>
+                <td><mat-form-field appearance="outline" style="width:50px;font-size: 6px;height: 6px;"><mat-select [(ngModel)]="emptyDataMoversNo" name="emptyDataMoversNo">
+                        <mat-option value="0">0</mat-option>    
+                        <mat-option *ngIf="dataMoversNoInstalled>=1" value="1">1</mat-option>
+                    <mat-option *ngIf="dataMoversNoInstalled>=2" value="2">2</mat-option>
+                    <mat-option *ngIf="dataMoversNoInstalled==3" value="3">3</mat-option>
+                    </mat-select></mat-form-field></td>
+            </tr>
+        </table>
+    <p>
+        <td>
+            <tr>Per data mover connectivity (Each of the options in this table have their own maximum quantity 
+                    and all of them together can have a max of 3 only)
+                </tr> 
+    <table (click)='validate()'>
+        
+        <tr> 
+            <td></td>
+            <td><b>Qty Install</b></td>
+            <td><b>Qty to add</b></td>
+        </tr>
+        <tr>
+            <td>1G Base-T, 4 ports</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="ainstalled" name="ainstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="aadded" name="aadded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>1GbE 2 CU,2 OP Ports</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="binstalled" name="binstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="badded" name="badded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>10GBaseT 2 Copper ports</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="cinstalled" name="cinstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="cadded" name="cadded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>10GbE 2 SFP+ OP ports</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="dinstalled" name="dinstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="dadded" name="dadded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>10GbE 2 Twinax Copper ports</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="einstalled" name="einstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="eadded" name="eadded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>10GbE 2 SFP+ OP ports(obsolete)</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="finstalled" name="finstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="fadded" name="fadded" value="0"/></mat-form-field></td>
+        </tr>
+        <tr>
+            <td>10GbE 2 Twinax Copper ports(obsolete)</td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="ginstalled" name="ginstalled" value="0"/></mat-form-field></td>
+            <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="gadded" name="gadded" value="0"/></mat-form-field></td>
+        </tr>
+        <div *ngIf="valid; then validinput else invalidinput"></div>
+        <ng-template #validinput>
+            </ng-template>
+            <ng-template #invalidinput>
+                   <small style="color: red">invalid input</small>
+                </ng-template>
+    </table>
+</td>
+        <td>
+                <tr>Total SP I/O module pairs for host connectivity (Each of the options in this table have their own max quantity 
+                    and all of them together can have a max of 2 only)
+                    </tr>
+                    <tr><mat-checkbox checkbox-position="before">Upgrade to 6 back-end buses?</mat-checkbox></tr>
+                    <table (click)='rvalidate()'>
+        
+                            <tr> 
+                                <td></td>
+                                <td><b>Qty Install</b></td>
+                                <td><b>Qty to add</b></td>
+                            </tr>
+                            <tr>
+                                <td>1G Base-T, 4 ports</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rainstalled" name="rainstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="raadded" name="raadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>1GbE 2 CU,2 OP Ports</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rbinstalled" name="rbinstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rbadded" name="rbadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>10GBaseT 2 Copper ports</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rcinstalled" name="rcinstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rcadded" name="rcadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>10GbE 2 SFP+ OP ports</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rdinstalled" name="rdinstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size:10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rdadded" name="rdadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>10GbE 2 Twinax Copper ports</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="reinstalled" name="reinstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="readded" name="readded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>10GbE 2 SFP+ OP ports(obsolete)</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rfinstalled" name="rfinstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rfadded" name="rfadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <tr>
+                                <td>10GbE 2 Twinax Copper ports(obsolete)</td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rginstalled" name="rginstalled" value="0"/></mat-form-field></td>
+                                <td><mat-form-field appearance="outline" style="width:50px;height: 10px;font-size: 10px;"><input type="number" min="0" matInput placeholder="0" maxlength="1" [(ngModel)]="rgadded" name="rgadded" value="0"/></mat-form-field></td>
+                            </tr>
+                            <div *ngIf="rvalid; then rvalidinput else rinvalidinput"></div>
+                            <ng-template #rvalidinput>
+                                </ng-template>
+                                <ng-template #rinvalidinput>
+                                       <small style="color: red">invalid input</small>
+                                    </ng-template>
+                        </table>
+        </td>
+    
+    
+    </p>
+    <div style="align-self: center">
+            <table style="align-self:center;width: fit-content;border:1px solid;background-color: aqua">
+    
+    <tr>I/O Summary</tr>
+    <tr>
+        <td>FC I/O</td>
+        <td>SP I/O</td>
+    </tr>
+    <tr>
+            <td>Total   {{ltotal}}</td>
+            <td>Total   {{rtotal}}</td>
+    </tr>
+    <tr>
+            <td>Maximum  3</td>
+            <td>Maximum  2</td>
+    </tr>
+</table>
+</div>
+   
+    <p><storage-component (storagedata)="getStorageData($event)"></storage-component></p>
+    <div (click)='onChanges()'>
+    <p>
+            <tr><h3><b>Fast Cache hardware</b></h3></tr>
+            <tr><td>Select your FAST Cache drive capacity</td>
+                <td style="width:40%"><mat-select [(ngModel)]="FastCacheDriveCapacity" name="FastCacheDriveCapacity">
+                        <mat-option value='100GB (15 x 3.5" DAE/DPE)'>100GB (15 x 3.5" DAE/DPE)</mat-option>
+                        <mat-option value='300GB (25 x 2.5" DAE/DPE)'>300GB (25 x 2.5" DAE/DPE)</mat-option>
+                        <mat-option value='500GB (15 x 3.5" DAE/DPE)'>500GB (15 x 3.5" DAE/DPE)</mat-option>
+                    </mat-select></td>
+            </tr>
+        </p>
+        <p>
+            <tr>
+                <td></td>
+                <td><b>Qty Installed</b></td>
+                <td><b>Qty to Add</b></td>
+            </tr>
+            <tr>
+                    <td>Specify your FAST Cache drives</td>
+                    <td><mat-form-field appearance="outline" style="width:50px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="driveinstalled" name="driveinstalled"/></mat-form-field></td>
+                    <td><mat-form-field appearance="outline" style="width:50px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="driveadded" name="driveadded"/></mat-form-field></td>
+            </tr>
+            <tr>
+                    <td>Specify your FAST Cache hot spares</td>
+                    <td><mat-form-field appearance="outline" style="width:50px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="sparesinstalled" name="sparesinstalled"/></mat-form-field></td>
+                    <td><mat-form-field appearance="outline" style="width:50px;font-size:10px;"><input type="number" min="0" matInput maxlength="1" [(ngModel)]="sparesadded" name="sparesadded"/></mat-form-field></td>
+            </tr>
+    </p>
+</div>
+    <p><software-component></software-component></p>
+</div>
+<div (click)='onChanges()' *ngIf="showOtherTabData">
+<h2><b>Maintenance</b></h2>
+<p>
+    <tr><td>Please select the maintenance type needed</td>
+        <td><mat-form-field>
+                <mat-select [(ngModel)]="maintenanceType" name="maintenanceType">
+                  <mat-option value="Pre-paid maintenance">
+                        Pre-paid maintenance
+                  </mat-option>
+                  <mat-option value="Post-paid maintenance">
+                        Post-paid maintenance
+                  </mat-option>
+                </mat-select>
+              </mat-form-field></td>
+    </tr>
+    <tr><h3><u>SOFTWARE</u></h3></tr>
+    <tr>
+            <mat-checkbox [(ngModel)]="maintenanceUpgrade" name="maintenanceUpgrade">Upgrade software maintenance to Premium</mat-checkbox>
+    </tr>
+    <tr>
+            <td>Software maintenance sold <small>(Months)</small></td>
+            <td><mat-form-field appearance="outline" style="width:50px;font-size: 10px;"><input type="number" matInput [(ngModel)]="maintenanceSold" name="maintenanceSold"/></mat-form-field></td>
+    </tr>
+    <tr>
+            <td>Software maintenance Concession<small>(Months)</small></td>
+            <td><mat-form-field appearance="outline" style="width:50px;font-size: 10px;"><input type="number" matInput [(ngModel)]="maintenanceConcession" name="maintenanceConcession"/></mat-form-field></td>
+    </tr>
+</p>
+</div>
